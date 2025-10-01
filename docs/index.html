@@ -284,9 +284,7 @@
                 <span class="link-block">
                   <a href="https://huggingface.co/nothingbutbut/era" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-hugging-face"></i>
-                  </span>
+                  <span class="icon" style="vertical-align: middle; font-size: 20px;">&#129303;</span>
                   <span>HuggingFace</span>
                 </a>
               </span>
@@ -300,33 +298,56 @@
 </section>
 
 
-<!-- Teaser video-->
+<!-- Teaser images-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      <div class="columns is-centered">
+        <!-- Image (a) -->
+        <div class="column" style="flex: none; width: 40%;">
+          <figure class="image">
+            <img src="static/images/1_a_llm.svg" alt="ERA enhances LLM performance">
+            <figcaption class="has-text-centered mt-2">(a)</figcaption>
+          </figure>
+        </div>
+        
+        <!-- Image (b) -->
+        <div class="column" style="flex: none; width: 30%;">
+          <figure class="image">
+            <img src="static/images/1_b_control.svg" alt="ERA improves continuous control">
+            <figcaption class="has-text-centered mt-2">(b)</figcaption>
+          </figure>
+        </div>
+        
+        <!-- Image (c) -->
+        <div class="column" style="flex: none; width: 30%;">
+          <figure class="image">
+            <img src="static/images/1_c_vision.svg" alt="ERA boosts image classification">
+            <figcaption class="has-text-centered mt-2">(c)</figcaption>
+          </figure>
+        </div>
+      </div>
+      
+      <h2 class="subtitle has-text-centered mt-4">
+        <strong>ERA Boosts Large Language Models, Continuous Control and Image Classification.</strong>
+        <br>
+        (a) <strong>Large Language Models:</strong> ERA consistently enhances the performance of Qwen-2.5-Math-7B on AIME'24, AIME'25 and AMC datasets.
+        (b) <strong>Continuous Control:</strong> ERA significantly improves multiple popular RL algorithms, including SAC, PPO, TD-MPC2 and OBAC.
+        (c) <strong>Image Classification:</strong> ERA consistently boosts the performance of ResNet-50 on ImageNet and CIFAR-10 datasets.
       </h2>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
+<!-- End teaser images -->
 
 <!-- Paper abstract -->
-<section class="section hero is-light">
+<section class="section hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-five-sixths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
+          <p style="color: #333; font-weight: 400;">
             We propose ERA, a new paradigm that constrains the sampling entropy above given thresholds by applying specially designed activations to the outputs of models. Our approach demonstrates broad effectiveness across different domains: 1) for large language models (LLMs), boosting the AIME 2025 score for Qwen2.5-Math-7B by 37.4%; 2) for continuous control reinforcement learning agents, improving performance by more than 30% over strong baselines such as SAC on the challenging HumanoidBench; 3) for image classification, enhancing ImageNet top-1 accuracy by 0.69% for ResNet-50. These gains are achieved with a computational overhead of less than 7%. Our work validates output activation as a powerful tool for entropy control, opening a new direction for designing simpler and more robust algorithms.
           </p>
         </div>
