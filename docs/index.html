@@ -74,11 +74,11 @@
 
 
   <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
+  <title>ERA: Entropy Regularizing Activation - Zilin Kang, Chonghua Liao, Huazhe Xu | Academic Research</title>
   
   <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
+  <link rel="apple-touch-icon" href="static/images/favicon.png">
   
   <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -114,50 +114,90 @@
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "headline": "Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints",
+    "description": "We propose ERA, a new paradigm that constrains the sampling entropy above given thresholds by applying specially designed activations to the outputs of models. Our approach demonstrates broad effectiveness across different domains: 1) for large language models (LLMs), boosting the AIME 2025 score for Qwen2.5-Math-7B by 37.4%; 2) for continuous control reinforcement learning agents, improving performance by more than 30% over strong baselines such as SAC on the challenging HumanoidBench; 3) for image classification, enhancing ImageNet top-1 accuracy by 0.69% for ResNet-50. These gains are achieved with a computational overhead of less than 7%. Our work validates output activation as a powerful tool for entropy control, opening a new direction for designing simpler and more robust algorithms.",
     "author": [
       {
         "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
+        "name": "Zilin Kang",
+        "affiliation": [
+          {
+            "@type": "Organization",
+            "name": "Shanghai Qi Zhi Institute"
+          },
+          {
+            "@type": "Organization",
+            "name": "Department of Computer Science and Technology, Tsinghua University"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "Chonghua Liao",
         "affiliation": {
           "@type": "Organization",
-          "name": "INSTITUTION_NAME"
+          "name": "Institute for Interdisciplinary Information Sciences, Tsinghua University"
         }
       },
       {
         "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
+        "name": "Tingqiang Xu",
         "affiliation": {
           "@type": "Organization",
-          "name": "INSTITUTION_NAME"
+          "name": "Institute for Interdisciplinary Information Sciences, Tsinghua University"
         }
+      },
+      {
+        "@type": "Person",
+        "name": "Huazhe Xu",
+        "affiliation": [
+          {
+            "@type": "Organization",
+            "name": "Shanghai Qi Zhi Institute"
+          },
+          {
+            "@type": "Organization",
+            "name": "Institute for Interdisciplinary Information Sciences, Tsinghua University"
+          },
+          {
+            "@type": "Organization",
+            "name": "Shanghai Artificial Intelligence Laboratory"
+          }
+        ]
       }
     ],
-    "datePublished": "2024-01-01",
+    "datePublished": "2025-10-01",
     "publisher": {
       "@type": "Organization",
       "name": "CONFERENCE_OR_JOURNAL_NAME"
     },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "url": "https://nothingbutbut.github.io/era",
+    "image": "https://nothingbutbut.github.io/era/static/images/social_preview.png",
+    "keywords": ["entropy", "large language model", "continuous control", "machine learning", "computer vision", "reinforcement learning", "image classification"],
+    "abstract": "We propose ERA, a new paradigm that constrains the sampling entropy above given thresholds by applying specially designed activations to the outputs of models. Our approach demonstrates broad effectiveness across different domains: 1) for large language models (LLMs), boosting the AIME 2025 score for Qwen2.5-Math-7B by 37.4%; 2) for continuous control reinforcement learning agents, improving performance by more than 30% over strong baselines such as SAC on the challenging HumanoidBench; 3) for image classification, enhancing ImageNet top-1 accuracy by 0.69% for ResNet-50. These gains are achieved with a computational overhead of less than 7%. Our work validates output activation as a powerful tool for entropy control, opening a new direction for designing simpler and more robust algorithms.",
     "citation": "BIBTEX_CITATION_HERE",
     "isAccessibleForFree": true,
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "mainEntity": {
       "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+      "@id": "https://nothingbutbut.github.io/era"
     },
     "about": [
       {
         "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
+        "name": "reinforcement learning"
       },
       {
         "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
+        "name": "large language model"
+      },
+      {
+        "@type": "Thing",
+        "name": "continuous control"
+      },
+      {
+        "@type": "Thing",
+        "name": "image classification"
       }
     ]
   }
@@ -168,12 +208,12 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "name": "Tsinghua Embodied AI Lab",
+    "url": "https://github.com/TEA-Lab",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.png",
     "sameAs": [
       "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
+      "https://github.com/TEA-Lab"
     ]
   }
   </script>
@@ -186,54 +226,6 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <main id="main-content">
   <section class="hero">
     <div class="hero-body">
@@ -243,62 +235,30 @@
             <!-- TODO: Replace with your paper title -->
             <h1 class="title is-1 publication-title">Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints</h1>
             <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="https://nothingbutbut.github.io" target="_blank">Zilin Kang</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="https://github.com/ChonghuaLiao" target="_blank">Chonghua Liao</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="https://github.com/xtqqwq" target="_blank">Tingqiang Xu</a><sup>*</sup>,</span>
-                  </span>
-                  <span class="author-block">
-                    <a href="http://hxu.rocks" target="_blank">Huazhe Xu</a>,</span>
-                  </span>
-                  </div>
+  <!-- Authors with affiliations -->
+  <span class="author-block">
+    <a href="https://nothingbutbut.github.io" target="_blank">Zilin Kang</a><sup>1,2,*</sup>,</span>
+    <span class="author-block">
+      <a href="https://scholar.google.co.jp/citations?user=2fB3YFcAAAAJ&hl=zh-CN" target="_blank">Chonghua Liao</a><sup>3,*</sup>,</span>
+      <span class="author-block">
+        <a href="https://github.com/xtqqwq" target="_blank">Tingqiang Xu</a><sup>3,*</sup>,</span>
+      </span>
+      <span class="author-block">
+        <a href="http://hxu.rocks" target="_blank">Huazhe Xu</a><sup>1,3,4</sup></span>
+      </span>
+</div>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Tsinghua Embodied AI Lab</span><br><!--Conference name and year -->
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+<div class="is-size-5 publication-authors">
+  <!-- Affiliations -->
+  <span class="author-block"><sup>1</sup>Shanghai Qi Zhi Institute</span>
+  <span class="author-block"><sup>2</sup>Department of Computer Science and Technology, Tsinghua University</span>
+  <span class="author-block"><sup>3</sup>Institute for Interdisciplinary Information Sciences, Tsinghua University</span>
+  <span class="author-block"><sup>4</sup>Shanghai Artificial Intelligence Laboratory</span>
+  <!-- Equal contribution note -->
+  <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+</div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
+                  <!-- TODO: Update with your arXiv paper ID -->
                 <span class="link-block">
                   <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
@@ -308,6 +268,29 @@
                   <span>arXiv</span>
                 </a>
               </span>
+
+                <!-- TODO: Replace with your GitHub repository URL -->
+                  <span class="link-block">
+                    <a href="https://github.com/nothingbutbut/era" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- 更新HuggingFace链接和图标 -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/nothingbutbut/era" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-hugging-face"></i>
+                  </span>
+                  <span>HuggingFace</span>
+                </a>
+              </span>
+
             </div>
           </div>
         </div>
@@ -344,7 +327,7 @@
         <div class="content has-text-justified">
           <!-- TODO: Replace with your paper abstract -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            We propose ERA, a new paradigm that constrains the sampling entropy above given thresholds by applying specially designed activations to the outputs of models. Our approach demonstrates broad effectiveness across different domains: 1) for large language models (LLMs), boosting the AIME 2025 score for Qwen2.5-Math-7B by 37.4%; 2) for continuous control reinforcement learning agents, improving performance by more than 30% over strong baselines such as SAC on the challenging HumanoidBench; 3) for image classification, enhancing ImageNet top-1 accuracy by 0.69% for ResNet-50. These gains are achieved with a computational overhead of less than 7%. Our work validates output activation as a powerful tool for entropy control, opening a new direction for designing simpler and more robust algorithms.
           </p>
         </div>
       </div>
