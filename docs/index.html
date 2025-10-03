@@ -527,16 +527,18 @@
     </div>
 
     <div class="columns is-centered mt-5">
-  <div class="column is-10">
-    <h3 class="title is-4 has-text-centered">Performance on ImageNet and CIFAR-10</h3>
-    <figure class="image mb-4">
-      <img src="static/images/table.svg" alt="Performance Table: ImageNet and CIFAR-10">
-    </figure>
-    <figcaption class="content is-small has-text-centered mb-5">
-      Top-1 and Top-5 accuracy (%) on ImageNet and CIFAR-10. We compare ERA against the original ResNet-50 baseline. Δ denotes the absolute improvement of ERA. All models are trained for 200 epochs.
-    </figcaption>
-  </div>
-</div>
+      <div class="column is-10">
+        <h3 class="title is-4 has-text-centered">Performance on ImageNet and CIFAR-10</h3>
+        <div class="table-container">
+          <figure class="image mb-4">
+            <img src="static/images/table.svg" alt="Performance Table: ImageNet and CIFAR-10" style="max-width: 100%; height: auto;">
+          </figure>
+        </div>
+        <figcaption class="content is-small has-text-centered mb-5">
+          Top-1 and Top-5 accuracy (%) on ImageNet and CIFAR-10. We compare ERA against the original ResNet-50 baseline. Δ denotes the absolute improvement of ERA. All models are trained for 200 epochs.
+        </figcaption>
+      </div>
+    </div>
 
     <div class="columns is-centered mt-5">
       <div class="column is-10">
@@ -546,9 +548,11 @@
             To investigate the effectiveness of ERA against common regularization methods, we conducted comparative experiments on CIFAR-10 against various intensities of Label Smoothing and Dropout. The results below show that increasing label smoothing intensity can harm performance, and dropout offers marginal gains. In contrast, ERA consistently and effectively enhances model performance, validating its advantage over conventional regularization methods.
           </p>
         </div>
-        <figure class="image mb-4">
-          <img src="static/images/vision_results.svg" alt="Comparison of different regularization methods on CIFAR-10">
-        </figure>
+        <div class="is-clipped overflow-hidden">
+          <figure class="image mb-4">
+            <img src="static/images/vision_results.svg" alt="Comparison of different regularization methods on CIFAR-10" style="max-width: 100%; height: auto;">
+          </figure>
+        </div>
         <figcaption class="content is-small has-text-centered">
           <b>Comparison of different regularization methods on the CIFAR-10 dataset.</b> The left subplot shows the Top-1 accuracy, and the right subplot shows the Top-5 accuracy. Our method, ERA, is compared against varying intensities of Label Smoothing and Dropout.
         </figcaption>
