@@ -516,7 +516,7 @@
             In discrete classification, regularizing predictive entropy is crucial for preventing overconfidence. For a softmax policy, we transform the pre-activation logits $z$ into $z'$ to ensure the policy's entropy is at least a target value $\mathcal{H}_0$:
           </p>
           $$
-            z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{\mathcal{H}_0} - n \frac{\log \tau}{\tau}\right)\frac{e^{z_i}}{\sum_{j=1}^{D}e^{z_j}}, 0\right)\right]
+            z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{\mathcal{H}_0} - n \frac{\log \tau}{\tau}\right)\frac{1}{D-1}\left(1 - \frac{e^{z_i}}{\sum_{j=1}^{D}e^{z_j}}\right), 0\right)\right]
           $$
           <p>
             Unlike label smoothing which applies uniform regularization, ERA allows the model to learn a structured, input-dependent uncertainty distribution, tailoring the regularization to each sample for greater expressive capacity and improved performance.
@@ -531,7 +531,7 @@
         <h3 class="title is-4 has-text-centered">Performance on ImageNet and CIFAR-10</h3>
         <div class="table-container">
           <figure class="image mb-4">
-            <img src="static/images/table.svg" alt="Performance Table: ImageNet and CIFAR-10" style="max-width: 90%; height: auto; display: block; margin: 0 auto;">
+            <img src="static/images/table.svg" alt="Performance Table: ImageNet and CIFAR-10" class="is-responsive" style="object-fit: contain;">
           </figure>
         </div>
         <figcaption class="content is-small has-text-centered mb-5">
@@ -548,10 +548,12 @@
             To investigate the effectiveness of ERA against common regularization methods, we conducted comparative experiments on CIFAR-10 against various intensities of Label Smoothing and Dropout. The results below show that increasing label smoothing intensity can harm performance, and dropout offers marginal gains. In contrast, ERA consistently and effectively enhances model performance, validating its advantage over conventional regularization methods.
           </p>
         </div>
-        <div class="is-clipped overflow-hidden">
-          <figure class="image mb-4">
-            <img src="static/images/vision_results.svg" alt="Comparison of different regularization methods on CIFAR-10" style="max-width: 90%; height: auto; display: block; margin: 0 auto;">
-          </figure>
+        <div class="columns is-centered">
+          <div class="column is-12">
+            <figure class="image mb-4">
+              <img src="static/images/vision_results.svg" alt="Comparison of different regularization methods on CIFAR-10" class="is-responsive" style="object-fit: contain;">
+            </figure>
+          </div>
         </div>
         <figcaption class="content is-small has-text-centered">
           <b>Comparison of different regularization methods on the CIFAR-10 dataset.</b> The left subplot shows the Top-1 accuracy, and the right subplot shows the Top-5 accuracy. Our method, ERA, is compared against varying intensities of Label Smoothing and Dropout.
