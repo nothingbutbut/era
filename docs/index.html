@@ -430,7 +430,7 @@ MathJax.Hub.Config({
 <!-- End : LLM Part -->
 
 <!-- Start : Continuous Control Part -->
-<section class="section hero is-small" id="cc-method">
+<section class="section hero is-small is-light" id="cc-method">
   <div class="container is-max-desktop">
     
     <div class="columns is-centered">
@@ -443,7 +443,7 @@ MathJax.Hub.Config({
       <div class="column is-10">
         <div class="content has-text-justified">
           <p>
-            In continuous control, directly maximizing the entropy of a policy is complicated by the bounding operations (e.g., $\tanh$) applied to action outputs. We observe that the entropy of the final bounded policy can be expressed as the entropy of the original unbounded Gaussian minus a non-negative bias term. Therefore, we can enforce a minimum entropy on the final policy by constraining the underlying Gaussian's entropy to a higher value. This is achieved by adjusting the Gaussian's standard deviation, $\sigma$. Our activation function $g(\cdot)$ computes the final parameters $(\mu', \sigma')$ as:
+            In continuous control, we enforce a minimum entropy on the final policy by constraining the underlying Gaussian's entropy to a higher value. This is achieved by adjusting the Gaussian's standard deviation, $\sigma$. Our activation function $g(\cdot)$ computes the final parameters $(\mu', \sigma')$ as:
           </p>
           $$
             \mu' = \mu, \quad \sigma' = \exp{\left[\max\left(\log \sigma_{\max} + (H_0' -D\log \sqrt{2\pi e} - D \log \sigma_{\max})\frac{e^{\hat{\sigma}_i}}{\sum_{j=1}^{D}e^{\hat{\sigma}_j}} , \log\sigma_{\min}\right)\right]}
@@ -521,7 +521,7 @@ MathJax.Hub.Config({
 </section>
 <!-- End : Continuous Control Part -->
 <!-- Start : Vision Part -->
-<section class="section hero is-small is-light" id="vision-method">
+<section class="section hero is-small" id="vision-method">
   <div class="container is-max-desktop">
 
     <div class="columns is-centered">
