@@ -369,7 +369,7 @@
 
         <div class="content has-text-justified">
           <p>
-            For large language models, we apply an activation layer to the logits $z$ to obtain a transformed set $z'$. This layer adaptively modulates the logit values based on the response entropy ($H_{\text{resp}}$) and token advantage ($A_t$):
+            For large language models, we apply an activation layer to the logits $z$ to obtain a transformed set $z'$. This layer adaptively modulates the logit values based on the response entropy $H_{\text{resp}}$ and token advantage $A_t$:
           </p>
           
           $$
@@ -513,10 +513,10 @@
       <div class="column is-10">
         <div class="content has-text-justified">
           <p>
-            In discrete classification, regularizing predictive entropy is crucial for preventing overconfidence. For a softmax policy, we transform the pre-activation logits $z$ into $z'$ to ensure the policy's entropy is at least a target value $H_0$:
+            In discrete classification, regularizing predictive entropy is crucial for preventing overconfidence. For a softmax policy, we transform the pre-activation logits $z$ into $z'$ to ensure the policy's entropy is at least a target value $\mathcal{H}_0$:
           </p>
           $$
-            z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{H_0} - n \frac{\log \tau}{\tau}\right)\frac{1}{D-1}\left(1 - \frac{e^{z_i}}{\sum_{j=1}^{D}e^{z_j}}\right), 0\right)\right]
+            z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{\mathcal{H}_0} - n \frac{\log \tau}{\tau}\right)\frac{1}{D-1}\left(1 - \frac{e^{z_i}}{\sum_{j=1}^{D}e^{z_j}}\right), 0\right)\right]
           $$
           <p>
             Unlike label smoothing which applies uniform regularization, ERA allows the model to learn a structured, input-dependent uncertainty distribution, tailoring the regularization to each sample for greater expressive capacity and improved performance.
@@ -527,83 +527,16 @@
     </div>
 
     <div class="columns is-centered mt-5">
-      <div class="column is-10">
-        <h3 class="title is-4 has-text-centered">Performance on ImageNet and CIFAR-10</h3>
-        <div class="table-container">
-          <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-            <thead>
-              <tr>
-                <th rowspan="2" style="vertical-align: middle; text-align: center;">Dataset</th>
-                <th rowspan="2" style="vertical-align: middle; text-align: center;">Method</th>
-                <th colspan="4" style="text-align: center;">Without Data Augmentation</th>
-                <th colspan="4" style="text-align: center;">With Data Augmentation</th>
-              </tr>
-              <tr>
-                <th style="text-align: center;">Top-1 Acc.</th>
-                <th style="text-align: center;">Δ</th>
-                <th style="text-align: center;">Top-5 Acc.</th>
-                <th style="text-align: center;">Δ</th>
-                <th style="text-align: center;">Top-1 Acc.</th>
-                <th style="text-align: center;">Δ</th>
-                <th style="text-align: center;">Top-5 Acc.</th>
-                <th style="text-align: center;">Δ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td rowspan="2" style="vertical-align: middle;">ImageNet</td>
-                <td>Original</td>
-                <td>74.75 ± 0.38</td>
-                <td>-</td>
-                <td>92.04 ± 0.23</td>
-                <td>-</td>
-                <td>76.93 ± 0.36</td>
-                <td>-</td>
-                <td>93.37 ± 0.21</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td><strong>ERA</strong></td>
-                <td><strong>75.44 ± 0.37</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.69</strong></td>
-                <td><strong>92.15 ± 0.23</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.11</strong></td>
-                <td><strong>77.30 ± 0.36</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.37</strong></td>
-                <td><strong>93.39 ± 0.21</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.02</strong></td>
-              </tr>
-              <tr>
-                <td rowspan="2" style="vertical-align: middle;">CIFAR-10</td>
-                <td>Original</td>
-                <td>93.61 ± 0.14</td>
-                <td>-</td>
-                <td>99.69 ± 0.08</td>
-                <td>-</td>
-                <td>93.53 ± 0.03</td>
-                <td>-</td>
-                <td>99.84 ± 0.02</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td><strong>ERA</strong></td>
-                <td><strong>93.82 ± 0.08</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.21</strong></td>
-                <td><strong>99.82 ± 0.03</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.13</strong></td>
-                <td><strong>93.93 ± 0.12</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.4</strong></td>
-                <td><strong>99.86 ± 0.01</strong></td>
-                <td><strong style="color: rgb(34, 120, 5);">+0.02</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <figcaption class="content is-small has-text-centered mt-2">
-            Top-1 and Top-5 accuracy (%) on ImageNet and CIFAR-10. We compare ERA against the original ResNet-50 baseline. Δ denotes the absolute improvement of ERA. All models are trained for 200 epochs.
-        </figcaption>
-      </div>
-    </div>
+  <div class="column is-10">
+    <h3 class="title is-4 has-text-centered">Performance on ImageNet and CIFAR-10</h3>
+    <figure class="image mb-4" style="text-align: center;">
+      <img src="static/images/table.svg" alt="Performance Table: ImageNet and CIFAR-10" style="max-width:100%; height:auto;">
+    </figure>
+    <figcaption class="content is-small has-text-centered mt-2">
+      Top-1 and Top-5 accuracy (%) on ImageNet and CIFAR-10. We compare ERA against the original ResNet-50 baseline. Δ denotes the absolute improvement of ERA. All models are trained for 200 epochs.
+    </figcaption>
+  </div>
+</div>
 
     <div class="columns is-centered mt-5">
       <div class="column is-10">
