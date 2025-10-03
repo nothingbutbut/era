@@ -351,7 +351,7 @@ MathJax.Hub.Config({
 <!-- End teaser images -->
 
 <!-- Paper abstract -->
-<section class="section hero">
+<section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-five-sixths">
@@ -368,7 +368,7 @@ MathJax.Hub.Config({
 <!-- End paper abstract -->
 
 <!-- LLM Part Here -->
-<section class="section hero is-small is-light" id="llm-method">
+<section class="section hero is-small" id="llm-method">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full">
@@ -376,42 +376,41 @@ MathJax.Hub.Config({
       </div>
     </div>
 
-    <div class="columns is-vcentered">
-      
-      <div class="column is-6">
-        <figure class="image">
+    <div class="columns is-centered">
+      <div class="column is-10">
+        
+        <figure class="image mb-4">
           <img src="static/images/llm_results.svg" alt="Entropy and pass@k results for GRPO with ERA">
         </figure>
-        <figcaption class="content is-small has-text-justified mt-2">
-          <b>Entropy comparison and pass@$k$ results for GRPO with ERA (ours) versus GRPO alone.</b>
+        
+        <figcaption class="content is-small has-text-centered mb-5">
+          <b>Entropy comparison and pass@$k$ results for GRPO with ERA (ours) versus GRPO.</b>
           The entropy curves demonstrate that ERA mitigates entropy collapse and establishes a clear lower bound.
           The pass@$k$ results further indicate that ERA enhances exploration and strengthens the model’s reasoning ability.
         </figcaption>
-      </div>
 
-      <div class="column is-6">
         <div class="content has-text-justified">
           <p>
             For large language models, we apply an activation layer to the logits $z$ to obtain a transformed set $z'$. This layer adaptively modulates the logit values based on the response entropy ($H_{\text{resp}}$) and token advantage ($A_t$):
           </p>
-        <div> 
+          
           $$
             z' = \begin{cases}
-    kz & H_{\text{resp}} < \omega_{\text{low}},\; A_{t}>0 \\
-    z & \omega_{\text{low}} \leq H_{\text{resp}} \leq \omega_{\text{high}} \\
-    \tfrac{1}{k}z & H_{\text{resp}} > \omega_{\text{high}},\; A_{t}>0
-\end{cases}
+                kz & H_{\text{resp}} < \omega_{\text{low}},\; A_{t}>0 \\
+                z & \omega_{\text{low}} \leq H_{\text{resp}} \leq \omega_{\text{high}} \\
+                \tfrac{1}{k}z & H_{\text{resp}} > \omega_{\text{high}},\; A_{t}>0
+            \end{cases}
           $$
-          </div> 
+          
           <p>
             To ensure the stability of the policy update, we apply an inverse scaling factor to the advantages of the modified tokens:
           </p>
 
           $$
             A_t' = \begin{cases}
-                \frac 1k A_t & H_{\text{resp}} &lt; \omega_{\text{low}},\; A_{t}&gt;0 \\
+                \frac 1k A_t & H_{\text{resp}} < \omega_{\text{low}},\; A_{t}>0 \\
                 A_t & \omega_{\text{low}} \leq H_{\text{resp}} \leq \omega_{\text{high}} \\
-                kA_t & H_{\text{resp}} &gt; \omega_{\text{high}},\; A_{t}&gt;0
+                kA_t & H_{\text{resp}} > \omega_{\text{high}},\; A_{t}>0
             \end{cases}
           $$
 
@@ -422,6 +421,7 @@ MathJax.Hub.Config({
           $$
             J(\theta) = \mathbb{E}_t[\mathbb{E}_{a_t\sim \pi_\theta(\cdot |s_t)}\log \pi_\theta'(a_t|s_t) A'_t]
           $$
+          For more details and proof of the entropy bound of ERA, please refer to our paper.  
         </div>
       </div>
     </div>
@@ -429,24 +429,223 @@ MathJax.Hub.Config({
 </section>
 <!-- End : LLM Part -->
 
-<section class="section hero is-small">
+<!-- Start : Continuous Control Part -->
+<section class="section hero is-small" id="cc-method">
   <div class="container is-max-desktop">
+    
     <div class="columns is-centered">
       <div class="column is-full">
-        <div class="content">
-          <h2 class="title is-3">Learning within Model Trees</h2>
-         <p>
-              <img src="/probex/static/images/motivation.png" alt="Directional Weight Score" class="blend-img-background center-image" style="max-width: 100%; height: auto;" loading="lazy" />
-            </p>
-            <p>
-                  We conduct 4 motivating experiments that illustrate the benefits of learning within Model Trees. In each experiment, we train a linear classifier to predict the classes a ViT model was fine-tuned on.
-              First, we show that <em>learning within Model Trees is significantly simpler (a)</em> by comparing a metanetwork trained on models from the same tree \(T\) with one trained on models from different trees \(F\). Next, we demonstrate <em>positive transfer within the same tree (b)</em> by showing that adding more models from the same tree improves the performance.  Surprisingly, we observe <em>negative transfer between Model Trees (c)</em>, where adding samples from other trees degrades performance on a single tree. Finally, we find that <em>expert learning is preferable when learning from multiple trees (d)</em>, as a single shared metanetwork performs worse than an expert metanetwork per tree (MoE).
-            </p>
+        <h2 class="title is-3 has-text-centered">Applying ERA to Continuous Control</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="content has-text-justified">
+          <p>
+            In continuous control, directly maximizing the entropy of a policy is complicated by the bounding operations (e.g., $\tanh$) applied to action outputs. We observe that the entropy of the final bounded policy can be expressed as the entropy of the original unbounded Gaussian minus a non-negative bias term. Therefore, we can enforce a minimum entropy on the final policy by constraining the underlying Gaussian's entropy to a higher value. This is achieved by adjusting the Gaussian's standard deviation, $\sigma$. Our activation function $g(\cdot)$ computes the final parameters $(\mu', \sigma')$ as:
+          </p>
+          $$
+            \mu' = \mu, \quad \sigma' = \exp{\left[\max\left(\log \sigma_{\max} + (H_0' -D\log \sqrt{2\pi e} - D \log \sigma_{\max})\frac{e^{\hat{\sigma}_i}}{\sum_{j=1}^{D}e^{\hat{\sigma}_j}} , \log\sigma_{\min}\right)\right]}
+          $$
+          <p>
+            Here, $H_0'$ is the target entropy plus a compensation parameter $\delta \ge 0$ to account for the bounding bias. This parameter can be a constant or automatically tuned by minimizing the following loss:
+          </p>
+          $$
+            L(\hat{\delta}) = \mathbb{E}_{s \sim D} \left[\hat{\delta}(H[\pi(\cdot|s)] - H_0)\right]
+          $$
+          Please refer to our paper for a detailed derivation, implementation details and proof of the entropy bound provided by ERA in continuous control settings.
         </div>
       </div>
     </div>
+
+    <div class="columns is-centered mt-5">
+      <div class="column is-10">
+        <figure class="image mb-4">
+          <img src="static/images/cc_results.svg" alt="ERA Performance in Continuous Control Benchmarks">
+        </figure>
+        <figcaption class="content is-small has-text-centered">
+          <b>Main Results of ERA in Continuous Control.</b> Aggregate normalized performance on HumanoidBench (6 tasks, with SAC), DMC (Humanoid & Dog) (6 tasks, with TD-MPC2), HumanoidBench (8 tasks, with FastSAC) and Mujoco Gym (4 tasks, with PPO). ERA consistently accelerates learning and achieves superior asymptotic performance.
+        </figcaption>
+      </div>
+    </div>
+
+    <div class="columns is-centered mt-5">
+      <div class="column is-10">
+        <h3 class="title is-4 has-text-centered">Policy Visualization</h3>
+        <div class="content has-text-centered">
+          <p>
+            We visualize the behaviors of SAC-ERA agents in different tasks to showcase the effectiveness and stability of the learned policies.
+          </p>
+        </div>
+        <div class="columns is-multiline is-centered" style="margin-top: 1rem;">
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">Dog Run</p>
+            <img src="static/images/dog-run.gif" alt="Dog Run Visualization">
+          </div>
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">Dog Walk</p>
+            <img src="static/images/dog-walk.gif" alt="Dog Walk Visualization">
+          </div>
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">Humanoid Run</p>
+            <img src="static/images/humanoid-run.gif" alt="Humanoid Run Visualization">
+          </div>
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">Humanoid Walk</p>
+            <img src="static/images/humanoid-walk.gif" alt="Humanoid Walk Visualization">
+          </div>
+        </div>
+        <div class="columns is-multiline is-centered" style="margin-top: 1rem;">
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">H1 Run</p>
+            <img src="static/images/h1-run.gif" alt="H1 Run Visualization">
+          </div>
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">H1 Walk</p>
+            <img src="static/images/h1-walk.gif" alt="H1 Walk Visualization">
+          </div>
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">H1 Slide</p>
+            <img src="static/images/h1-slide.gif" alt="H1 Slide Visualization">
+          </div>
+          <div class="column is-one-quarter has-text-centered">
+            <p class="subtitle is-5">H1 Stand</p>
+            <img src="static/images/h1-stand.gif" alt="H1 Stand Visualization">
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+<!-- End : Continuous Control Part -->
+<!-- Start : Vision Part -->
+<section class="section hero is-small is-light" id="vision-method">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Applying ERA to Image Classification</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="content has-text-justified">
+          <p>
+            In discrete classification, regularizing predictive entropy is crucial for preventing overconfidence. For a softmax policy, we transform the pre-activation logits $z$ into $z'$ to ensure the policy's entropy is at least a target value $H_0$:
+          </p>
+          $$
+            z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{H_0} - n \frac{\log \tau}{\tau}\right)\frac{1}{D-1}\left(1 - \frac{e^{z_i}}{\sum_{j=1}^{D}e^{z_j}}\right), 0\right)\right]
+          $$
+          <p>
+            Unlike label smoothing which applies uniform regularization, ERA allows the model to learn a structured, input-dependent uncertainty distribution, tailoring the regularization to each sample for greater expressive capacity and improved performance.
+            For a detailed demonstration, derivation, and proof of the entropy bound provided by ERA in classification settings, please refer to our paper.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered mt-5">
+      <div class="column is-10">
+        <h3 class="title is-4 has-text-centered">Performance on ImageNet and CIFAR-10</h3>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th rowspan="2" style="vertical-align: middle; text-align: center;">Dataset</th>
+                <th rowspan="2" style="vertical-align: middle; text-align: center;">Method</th>
+                <th colspan="4" style="text-align: center;">Without Data Augmentation</th>
+                <th colspan="4" style="text-align: center;">With Data Augmentation</th>
+              </tr>
+              <tr>
+                <th style="text-align: center;">Top-1 Acc.</th>
+                <th style="text-align: center;">Δ</th>
+                <th style="text-align: center;">Top-5 Acc.</th>
+                <th style="text-align: center;">Δ</th>
+                <th style="text-align: center;">Top-1 Acc.</th>
+                <th style="text-align: center;">Δ</th>
+                <th style="text-align: center;">Top-5 Acc.</th>
+                <th style="text-align: center;">Δ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2" style="vertical-align: middle;">ImageNet</td>
+                <td>Original</td>
+                <td>74.75 ± 0.38</td>
+                <td>-</td>
+                <td>92.04 ± 0.23</td>
+                <td>-</td>
+                <td>76.93 ± 0.36</td>
+                <td>-</td>
+                <td>93.37 ± 0.21</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><strong>ERA</strong></td>
+                <td><strong>75.44 ± 0.37</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.69</strong></td>
+                <td><strong>92.15 ± 0.23</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.11</strong></td>
+                <td><strong>77.30 ± 0.36</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.37</strong></td>
+                <td><strong>93.39 ± 0.21</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.02</strong></td>
+              </tr>
+              <tr>
+                <td rowspan="2" style="vertical-align: middle;">CIFAR-10</td>
+                <td>Original</td>
+                <td>93.61 ± 0.14</td>
+                <td>-</td>
+                <td>99.69 ± 0.08</td>
+                <td>-</td>
+                <td>93.53 ± 0.03</td>
+                <td>-</td>
+                <td>99.84 ± 0.02</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><strong>ERA</strong></td>
+                <td><strong>93.82 ± 0.08</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.21</strong></td>
+                <td><strong>99.82 ± 0.03</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.13</strong></td>
+                <td><strong>93.93 ± 0.12</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.4</strong></td>
+                <td><strong>99.86 ± 0.01</strong></td>
+                <td><strong style="color: rgb(34, 120, 5);">+0.02</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption class="content is-small has-text-centered mt-2">
+            Top-1 and Top-5 accuracy (%) on ImageNet and CIFAR-10. We compare ERA against the original ResNet-50 baseline. Δ denotes the absolute improvement of ERA. All models are trained for 200 epochs.
+        </figcaption>
+      </div>
+    </div>
+
+    <div class="columns is-centered mt-5">
+      <div class="column is-10">
+        <h3 class="title is-4 has-text-centered">Comparison with Other Regularization Methods</h3>
+        <div class="content has-text-justified">
+          <p>
+            To investigate the effectiveness of ERA against common regularization methods, we conducted comparative experiments on CIFAR-10 against various intensities of Label Smoothing and Dropout. The results below show that increasing label smoothing intensity can harm performance, and dropout offers marginal gains. In contrast, ERA consistently and effectively enhances model performance, validating its advantage over conventional regularization methods.
+          </p>
+        </div>
+        <figure class="image mb-4">
+          <img src="static/images/vision_results.svg" alt="Comparison of different regularization methods on CIFAR-10">
+        </figure>
+        <figcaption class="content is-small has-text-centered">
+          <b>Comparison of different regularization methods on the CIFAR-10 dataset.</b> The left subplot shows the Top-1 accuracy, and the right subplot shows the Top-5 accuracy. Our method, ERA, is compared against varying intensities of Label Smoothing and Dropout.
+        </figcaption>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- End : Vision Part -->
 
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
