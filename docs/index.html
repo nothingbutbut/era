@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    processEscapes: true
-  }
-});
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    CommonHTML: { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+    SVG: { linebreaks: { automatic: true } }
+  });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
   
   <!-- Primary Meta Tags -->
   <!-- TODO: Replace with your paper title and author names -->
@@ -425,13 +425,13 @@ MathJax.Hub.Config({
           </p>
           $$
             \mu' = \mu, \\
-            \sigma' = \exp{\left[\max\left(\log \sigma_{\max} + (H_0' -D\log \sqrt{2\pi e} - D \log \sigma_{\max})\frac{e^{\hat{\sigma}_i}}{\sum_{j=1}^{D}e^{\hat{\sigma}_j}} , \log\sigma_{\min}\right)\right]}
+            \sigma' = \exp{\left[\max\left(\log \sigma_{\max} + (\mathcal{H}_0' -D\log \sqrt{2\pi e} - D \log \sigma_{\max})\frac{e^{\hat{\sigma}_i}}{\sum_{j=1}^{D}e^{\hat{\sigma}_j}} , \log\sigma_{\min}\right)\right]}
           $$
           <p>
-            Here, $H_0'$ is the target entropy plus a compensation parameter $\delta \ge 0$ to account for the bounding bias. This parameter can be a constant or automatically tuned by minimizing the following loss:
+            Here, $\mathcal{H}_0'$ is the target entropy plus a compensation parameter $\delta \ge 0$ to account for the bounding bias. This parameter can be a constant or automatically tuned by minimizing the following loss:
           </p>
           $$
-            L(\hat{\delta}) = \mathbb{E}_{s \sim D} \left[\hat{\delta}(H[\pi(\cdot|s)] - H_0)\right]
+            L(\hat{\delta}) = \mathbb{E}_{s \sim \mathcal{D}} \left[\hat{\delta}(\mathcal{H}[\pi(\cdot|s)] - \mathcal{H}_0)\right]
           $$
           Please refer to our paper for a detailed derivation, implementation details and proof of the entropy bound provided by ERA in continuous control settings.
         </div>
