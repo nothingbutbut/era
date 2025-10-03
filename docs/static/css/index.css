@@ -749,22 +749,3 @@ a:focus {
   }
 }
 
-/* 保证 container 在移动端不会超出屏幕宽度 */
-.container, .column {
-  max-width: 100vw;
-  box-sizing: border-box;
-}
-
-/* 针对 .is-max-desktop 在小屏幕下全宽显示 */
-@media (max-width: 768px) {
-  .container.is-max-desktop {
-    max-width: 100vw;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-  .column.is-five-sixths {
-    width: 100% !important;
-    max-width: 100vw;
-  }
-}
-
