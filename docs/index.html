@@ -516,7 +516,7 @@
             In discrete classification, regularizing predictive entropy is crucial for preventing overconfidence. For a softmax policy, we transform the pre-activation logits $z$ into $z'$ to ensure the policy's entropy is at least a target value $\mathcal{H}_0$:
           </p>
           $$
-            z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{\mathcal{H}_0} - n \frac{\log \tau}{\tau}\right)\frac{1}{D-1}\left(1 - \frac{e^{z_i}}{\sum_{j=1}^{D}e^{z_j}}\right), 0\right)\right]
+            z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{\mathcal{H}_0} - n \frac{\log \tau}{\tau}\right)\frac{e^{z_i}}{\sum_{j=1}^{D}e^{z_j}}, 0\right)\right]
           $$
           <p>
             Unlike label smoothing which applies uniform regularization, ERA allows the model to learn a structured, input-dependent uncertainty distribution, tailoring the regularization to each sample for greater expressive capacity and improved performance.
