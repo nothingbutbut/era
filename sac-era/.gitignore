@@ -1,0 +1,12 @@
+__pycache__/
+tmp/
+runs/
+run/
+output/
+wandb/
+results/
+humanoid-bench/
+
+# All outputs from the code
+*.log
+*.out
