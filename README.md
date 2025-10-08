@@ -139,6 +139,16 @@ If you find this work useful in your research, please consider citing:
 ```
 
 # 🌻 Acknowledgement
+Our code is built upon the following open-source projects. We sincerely thank the authors for their contributions to the community.
+- [Qwen2.5-Math](https://github.com/QwenLM/Qwen2.5-Math)
+- [verl](https://github.com/volcengine/verl)
+- [jaxrl](https://github.com/ikostrikov/jaxrl)
+- [pytorch-image-models](https://github.com/rwightman/pytorch-image-models)
+
+We also thank the following people for their valuable discussions and suggestions:
+- [Kaizhe Hu](https://github.com/hukz18)
+- [Huanyu Li](https://scholar.google.com/citations?user=QOQL-N0AAAAJ&hl=en)
+- [Ruizhe Shi](https://scholar.google.com/citations?hl=en&user=0tlXSPkAAAAJ&view_op=list_works&sortby=pubdate)
 
 # 📬 Contact
 For questions, discussion, or collaboration opportunities, feel free to contact:
