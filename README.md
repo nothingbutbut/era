@@ -59,7 +59,7 @@ $$
 This allows ERA to be integrated seamlessly into on-policy algorithms, resulting in the following GRPO objective:
 
 $$
-J(\theta) = \mathbb{E}_t \!\left[\mathbb{E}_{a_t\sim \pi_\theta(\cdot \mid s_t)} \log \pi_\theta'(a_t\mid s_t)\, A'_t \right]
+J(\theta) = \mathbb{E}_t \left[\mathbb{E}_{a_t\sim \pi_\theta(\cdot \mid s_t)} \log \pi_\theta'(a_t\mid s_t)\, A'_t \right]
 $$
 
 ---
@@ -74,7 +74,7 @@ In continuous control, we enforce a minimum entropy on the final policy by const
 
 $$
 \mu' = \mu,\quad
-\sigma' = \exp\!\left[\max\!\left(\log \sigma_{\max} + \frac{\left(\mathcal{H}_0' - D\log \sqrt{2\pi e} - D \log \sigma_{\max}\right) e^{\hat{\sigma}_i}}{\sum_{j=1}^{D} e^{\hat{\sigma}_j}},\, \log \sigma_{\min}\right)\right]
+\sigma' = \exp\left[\max \left(\log \sigma_{\max} + \frac{\left(\mathcal{H}_0' - D\log \sqrt{2\pi e} - D \log \sigma_{\max}\right) e^{\hat{\sigma}_i}}{\sum_{j=1}^{D} e^{\hat{\sigma}_j}}, \log \sigma_{\min}\right)\right]
 $$
 
 Here, $\mathcal{H}_0'$ is the target entropy plus a compensation parameter $\delta \ge 0$ to account for the bounding bias. This parameter can be a constant or automatically tuned by minimizing the following loss:
@@ -109,7 +109,7 @@ $$
 In discrete classification, regularizing predictive entropy is crucial for preventing overconfidence. For a softmax policy, we transform the pre-activation logits $z$ into $z'$ to ensure the policy's entropy is at least a target value $\mathcal{H}_0$:
 
 $$
-z' = h^{-1}\!\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{\mathcal{H}_0} - n \frac{\log \tau}{\tau}\right)\frac{1}{D-1}\left(1 - \frac{e^{z_i}}{\sum_{j=1}^{D} e^{z_j}}\right),\, 0\right)\right]
+z' = h^{-1}\left[\max \left(\frac{\log \tau}{\tau} + \left(C_{\mathcal{H}_0} - n \frac{\log \tau}{\tau}\right)\frac{1}{D-1}\left(1 - \frac{e^{z_i}}{\sum_{j=1}^{D} e^{z_j}}\right),\, 0\right)\right]
 $$
 
 Unlike label smoothing which applies uniform regularization, ERA allows the model to learn a structured, input-dependent uncertainty distribution, tailoring the regularization to each sample for greater expressive capacity and improved performance.
