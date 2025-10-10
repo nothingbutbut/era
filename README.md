@@ -2,7 +2,7 @@
 
 # Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints
 
-[![Paper](https://img.shields.io/badge/paper-2306.14838-B31B1B?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2306.14838)  [![Github](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=github&logoColor=000&logoColor=white)](https://github.com/nothingbutbut/era) [![Website](https://img.shields.io/badge/Website-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://nothingbutbut.github.io/era/) [![Twitter](https://img.shields.io/badge/Twitter-%23000000.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/nothingbutbut)
+[![Paper](https://img.shields.io/badge/paper-2510.08549-B31B1B?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2510.08549)  [![Github](https://img.shields.io/badge/Github-000000?style=for-the-badge&logo=github&logoColor=000&logoColor=white)](https://github.com/nothingbutbut/era) [![Website](https://img.shields.io/badge/Website-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://nothingbutbut.github.io/era/) [![Twitter](https://img.shields.io/badge/Twitter-%23000000.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/zilin_kang)
 
 <div align="center" style="font-family: Arial, sans-serif;">
   <p>
@@ -19,7 +19,7 @@
 </div>
 
 # 🎉News
-- **[2025/10/08]** Released our Paper on arXiv. See [here](https://arxiv.org/pdf/2505.22617). We propose ERA, a new paradigm that constrains the sampling entropy above given thresholds by applying specially designed activations to the outputs of models.
+- **[2025/10/09]** Released our Paper on arXiv. See [here](https://arxiv.org/abs/2510.08549). We propose ERA, a new paradigm that constrains the sampling entropy above given thresholds by applying specially designed activations to the outputs of models.
 
 # 📖Introduction
 <div align="left">
@@ -130,11 +130,14 @@ To investigate the effectiveness of ERA against common regularization methods, w
 If you find this work useful in your research, please consider citing:
 
 ```bibtex
-@article{lee2023entropy,
-    title={Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints},
-    author={Zilin Kang, Chonghua Liao, Tingqiang Xu, Huazhe Xu},
-    journal={arXiv preprint arXiv:2306.14838},
-    year={2025}
+@misc{kang2025entropyregularizingactivationboosting,
+      title={Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints}, 
+      author={Zilin Kang and Chonghua Liao and Tingqiang Xu and Huazhe Xu},
+      year={2025},
+      eprint={2510.08549},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2510.08549}, 
 }
 ```
 
