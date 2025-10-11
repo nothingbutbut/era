@@ -1,5 +1,5 @@
 # 💥 SAC-ERA
-This repository contains the code for the paper **"Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints"**([Link to Paper](TBD)). Built on top of the SAC (Soft Actor-Critic) framework, it introduces the ERA (Entropy Regularized Activation) function to enhance performance in various tasks.
+This repository contains the code for the paper **"Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints"**([Link to Paper](https://arxiv.org/abs/2510.08549)). Built on top of the SAC (Soft Actor-Critic) framework, it introduces the ERA (Entropy Regularized Activation) function to enhance performance in various tasks.
 
 ## 📰Updates
 - **2025.09.21**: Repository created and initial code for SAC with ERA activation function added.

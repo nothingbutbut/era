@@ -1,5 +1,5 @@
 # ResNet50-ERA
-This repository contains the code for the paper **"Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints"**([Link to Paper](TBD)). Built on top of the ResNet50 architecture, it introduces the ERA (Entropy Regularized Activation) function to enhance performance in image classification tasks.
+This repository contains the code for the paper **"Entropy Regularizing Activation: Boosting Continuous Control, Large Language Models, and Image Classification with Activation as Entropy Constraints"**([Link to Paper](https://arxiv.org/abs/2510.08549)). Built on top of the ResNet50 architecture, it introduces the ERA (Entropy Regularized Activation) function to enhance performance in image classification tasks.
 
 This codebase is adapted from [timm](https://github.com/rwightman/pytorch-image-models), and we sincerely thank the author Ross Wightman for his excellent work.
 We keep most of the original code and only modify the output activation of the resnet model.
