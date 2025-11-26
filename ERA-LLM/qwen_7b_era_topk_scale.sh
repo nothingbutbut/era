@@ -5,7 +5,7 @@ set -xeuo pipefail
 
 entity_name=""
 project_name="ERA-LLM"
-exp_name="Math-7B-era-0.45-3.0-topk"
+exp_name="Math-7B-era-0.45-3.0-topk-scale"
 
 adv_estimator=grpo
 
@@ -19,7 +19,7 @@ clip_ratio_high=1.0
 era_lb=0.45
 era_ub=3.0
 era_k=2
-adv_scale=False
+adv_scale=True
 topk=True
 
 max_prompt_length=$((1024 * 2))
